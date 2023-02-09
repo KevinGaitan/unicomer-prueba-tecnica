@@ -2,6 +2,16 @@
 
 ## Kevin Gaitán
 
+| Used     | Version  |
+|----------|:--------:|
+| Java     |    17    |
+| Spring   |  2.7.8   |
+| Gradle   |    -     |
+| IntelliJ | 2022.3.3 |
+
+
+Para comodidad se ha usado h2 database.
+
 ## Información de la tarea
 
 ### Datos a capturar
