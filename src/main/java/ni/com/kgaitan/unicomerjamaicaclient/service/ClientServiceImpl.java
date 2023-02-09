@@ -28,15 +28,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client saveClient(ClientRequest clientRequest) {
-
-        Client client = new Client();
-
-        return saveClientRequest(clientRequest, client);
+    public Client createClient(ClientRequest clientRequest) {
+        return saveClientRequest(clientRequest, new Client());
     }
 
     @Override
-    public Client saveClient(Long id, ClientRequest clientRequest) {
+    public Client updateClient(Long id, ClientRequest clientRequest) {
 
         Optional<Client> clientOpt = clientRepository.findById(id);
 

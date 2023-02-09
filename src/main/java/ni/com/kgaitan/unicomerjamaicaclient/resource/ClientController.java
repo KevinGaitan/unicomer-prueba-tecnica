@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,13 +44,24 @@ public class ClientController {
 
     @PostMapping
     public ResponseEntity<Client> saveClient(@RequestBody @Valid ClientRequest clientRequest) {
-        return ResponseEntity.ok(clientService.saveClient(clientRequest));
+
+        Client client = clientService.createClient(clientRequest);
+
+        if (client == null)
+            return ResponseEntity.noContent().build();
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(client.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
 
     @PutMapping("/{id}")
     public ResponseEntity<Client> updateClient(@PathVariable("id") Long id, @RequestBody @Valid ClientRequest clientRequest) {
-        return ResponseEntity.ok(clientService.saveClient(id, clientRequest));
+        return ResponseEntity.ok(clientService.updateClient(id, clientRequest));
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

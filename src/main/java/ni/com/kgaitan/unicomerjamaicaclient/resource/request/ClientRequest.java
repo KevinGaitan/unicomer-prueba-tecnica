@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 public class ClientRequest {

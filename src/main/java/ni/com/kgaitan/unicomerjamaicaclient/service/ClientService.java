@@ -11,7 +11,7 @@ public interface ClientService {
 
     Optional<Client> getClient(Long id);
 
-    Client saveClient(ClientRequest clientRequest);
+    Client createClient(ClientRequest clientRequest);
 
-    Client saveClient(Long id, ClientRequest clientRequest);
+    Client updateClient(Long id, ClientRequest clientRequest);
 }
