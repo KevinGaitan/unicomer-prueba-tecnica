@@ -51,20 +51,20 @@ class ClientControllerTest {
     void getClientShouldBeNotFound() throws Exception {
         Long id = -1L;
 
-        given(clientService.getClient(-1L)).willReturn(Optional.empty());
+        given(clientService.getClient(id)).willReturn(Optional.empty());
 
         mockMvc.perform(get("/api/v1/clients/{id}", id))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    void getClientShouldBeFound() throws Exception {
+    void getClientShouldBeOk() throws Exception {
         Long id = 1L;
 
-        given(clientService.getClient(-1L)).willReturn(Optional.of(johnDoe));
+        given(clientService.getClient(id)).willReturn(Optional.of(johnDoe));
 
         mockMvc.perform(get("/api/v1/clients/{id}", id))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isOk());
     }
 
     @Test
